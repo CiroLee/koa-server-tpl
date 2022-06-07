@@ -1,0 +1,34 @@
+name: deploy server
+
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  main:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+    - name: push files
+      uses: easingthemes/ssh-deploy@main
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        ARGS: "-rltgoDzvO --delete"
+        SOURCE: "*"
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.REMOTE_TARGET }}
+    - name: SSH Remote Commands
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.REMOTE_HOST }}
+        username: ${{ secrets.REMOTE_USER }}
+        key: ${{ secrets.DEPLOY_KEY }}
+        script: |
+          export PATH=/root/.nvm/versions/node/v16.14.2/bin:$PATH
+          cd ${{ secrets.REMOTE_TARGET }}
+          node -v
+          npx pnpm install
+          npx pnpm run deploy:start
+

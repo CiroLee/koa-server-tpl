@@ -1,0 +1,59 @@
+{
+  "name": "koa-server",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "cross-env NODE_ENV=development tsup --watch --sourcemap",
+    "build": "cross-env NODE_ENV=production tsup",
+    "deploy:reload": "npm run build && npx pm2 reload ecosystem.config.js",
+    "deploy:start": "npm run build && npx pm2 start ecosystem.config.js"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx,json,md}": [
+      "eslint --config .eslintrc.js"
+    ]
+  },
+  "keywords": [
+    "koa",
+    "node"
+  ],
+  "author": "cirolee<ciromail@126.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/config-conventional": "^16.2.4",
+    "@types/koa": "^2.13.4",
+    "@types/koa-compose": "^3.2.5",
+    "@types/koa-router": "^7.4.4",
+    "@types/lodash-es": "^4.17.6",
+    "@types/node": "^17.0.40",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "commitlint": "^16.3.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.17.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^11.2.6",
+    "prettier": "^2.6.2",
+    "tsup": "^5.12.9",
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^6.3.1",
+    "axios": "^0.26.1",
+    "colord": "^2.9.2",
+    "joi": "^17.6.0",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-compose": "^4.1.0",
+    "koa-router": "^10.1.1",
+    "lodash-es": "^4.17.21",
+    "lorem-en": "^0.0.2",
+    "lorem-zh": "^0.1.0",
+    "pm2": "^5.2.0"
+  }
+}

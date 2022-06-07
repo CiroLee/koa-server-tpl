@@ -1,0 +1,7 @@
+node_modules
+dist
+dev_dist
+lib
+.Ds_Store
+.idea
+src/config/*.conf.json
