@@ -8,7 +8,7 @@ const response = async (ctx: Context, next: Next) => {
       data: ctx.body,
     };
   };
-  ctx.state.fail = ({ code = ERROR_CODE.unkuown.code, message = ERROR_CODE.unkuown.desc, data = null }) => {
+  ctx.state.fail = ({ code = ERROR_CODE.unkuown.code, message = ERROR_CODE.unkuown.message, data = null }) => {
     ctx.body = {
       code,
       message,

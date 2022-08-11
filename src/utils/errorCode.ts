@@ -19,4 +19,8 @@ export const ERROR_CODE = {
     code: -10002,
     message: 'invalid params',
   },
+  ApiNotFound: {
+    code: 404,
+    message: 'api not found',
+  },
 };
